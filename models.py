@@ -7,8 +7,8 @@ class Member(BaseModel):
     account: str = Field(max_length=16,
                          min_length=8, description='最少輸入8個字元,最多16個字元')
     password: str = Field(...)
-    name: str = Field(...)
-    phone: str = Field(...)
+    name: str = Field(None)
+    phone: str = Field(None)
     '''
     Field(...)是必填欄位,Field（None） 是可選填
     Field(None,title="The description of the item",max_length=10,alias='我是替代字')
@@ -36,5 +36,19 @@ class MemberUpdate(BaseModel):
             "example": {
                 "name": "Zoe",
                 "phone": "0900123321"
+            }
+        }
+
+
+class Login(BaseModel):
+    account: str = Field(max_length=16,
+                         min_length=8, description='最少輸入8個字元,最多16個字元')
+    password: str = Field(...)
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "account": "testtest123",
+                "password": "testpassword"
             }
         }
